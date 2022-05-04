@@ -25,7 +25,7 @@ Pleaser cite the following article if you use the following script: TBP
 The pipeline only requires [MATLAB](https://www.mathworks.com/products/matlab.html) to run. 
 
 ## Third party files
-We have included code from the following projects to this repository:
+We have used code from the following projects in this repository:
 * [SimNIBS](https://simnibs.github.io/simnibs/build/html/index.html)
 * [Triangle/Ray Intersection](https://nl.mathworks.com/matlabcentral/fileexchange/33073-triangle-ray-intersection)
 
