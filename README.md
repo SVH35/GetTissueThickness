@@ -30,7 +30,7 @@ We have used code from the following projects in this repository:
 * [Triangle/Ray Intersection](https://nl.mathworks.com/matlabcentral/fileexchange/33073-triangle-ray-intersection)
 
 ## Overview of the pipeline
-This section provides a short overview of the pipeline, a more in-depth discussion of the underlying methods can be found in the accompanying publication. 
+To run the pipeline, download the [code](/Code). This section provides a short overview of the pipeline, a more in-depth discussion of the underlying methods can be found in the accompanying publication. 
 
 ### 0. Generate high-quality head models from MR images
 Given that finite element head meshes are required, an algoritm capable of creating these head meshes based on T1w and T2w magnetic resonance image scans is required before being able to use GTT. We recommend [SimNIBS headreco](https://simnibs.github.io/simnibs/build/html/documentation/command_line/headreco.html).
@@ -49,31 +49,34 @@ Through the [Möller–Trumbore Ray/Triaingle intersection algorithm](https://nl
 
 
 ## Tutorial
-1. Download the [tutorial dataset](https://github.com/SVH35/GetTissueThickness/tree/main/Documents/Tutorial%20Dataset) to follow along. 
-2. Create finite element head meshes from the downloaded T1w and T2w MRI scans. We recommend [SimNIBS headreco](https://simnibs.github.io/simnibs/build/html/documentation/command_line/headreco.html) to do so. Although SimNIBS provides a comprehensive overview of this procedures, a short summary is given here for the sake of completeness:
-2.1. Open a terminal
-2.2. Run the following command
+1. Download the [tutorial dataset](https://github.com/SVH35/GetTissueThickness/tree/main/Documents/Tutorial%20Dataset). 
 
-`headreco all Example_GTT Example_GTT_T1.nii Example_GTT_T2.nii` 
+2. Create finite element head meshes from the downloaded T1w and T2w MRI scans. We recommend [SimNIBS headreco](https://simnibs.github.io/simnibs/build/html/documentation/command_line/headreco.html) (version 3.2) to do so. Although SimNIBS provides a comprehensive overview of this procedures, a short summary is given here for the sake of completeness.
 
-*if a CPU-heavy computer is available, we recommend running headreco in a parellel for-loop to considerably decrease running time when working with large datasets*
+    2.1. Open a terminal
+    
+    2.2. Run the following command
+  
+    `headreco all Example_GTT Example_GTT_T1.nii Example_GTT_T2.nii` 
+  
+    *if a CPU-heavy computer is available, we recommend running headreco in a parellel for-loop to considerably decrease running time when working with       large datasets*
+  
+    2.3. Check results
+  
+    `headreco check Example_GTT`
 
-2.3. Check results
-
-`headreco check Example_GTT`
-
-3. Add the codes folder to the MATLAB pathlist
+3. Download the [code](/Code) and add it to your MATLAB path.
 4. Add the m2m folder containing the subject mesh as a variable in matlab. For instance;
 
-`m2m_folder = C:\Users\SVH\GTT\m2m_Example_GTT';`
+   `m2m_folder = C:\Users\SVH\GTT\m2m_Example_GTT';`
 
 5. Add the coordinate of interest as a variable in MATLAB. For instance, suppose we aim to investigate M1, the MNI coordinate would be x = -37, y = -21, z = 58 ([Mayka et al. 2007](https://doi.org/10.1016/j.neuroimage.2006.02.004)).
 
-`roi = [-37, -21, 58];`
+    `roi = [-37, -21, 58];`
 
-7. Run the following command in MATLAB. The third argument should be 1 if you want to plot the results. The created figure will show all tissue layers (grey matter, cerebrospinal fluid, bone and skin), the grey matter plane, the grey matter normal and all intersection points. The fourth argument defines the total amount of nearby points you want to use to create the data matrix used in the principal component analysis. 
+6. Run the following command in MATLAB. The third argument should be 1 if you want to plot the results. The created figure will show all tissue layers (grey matter, cerebrospinal fluid, bone and skin), the grey matter plane, the grey matter normal and all intersection points. The fourth argument defines the total amount of nearby points you want to use to create the data matrix used in the principal component analysis. 
 
-`CalcTissueThickness(m2m_folder,roi, 1, 5000);`
+   `CalcTissueThickness(m2m_folder,roi, 1, 5000);`
 
 ## License
 This software runs under a GNU General Public License v3.0.
