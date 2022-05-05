@@ -2,7 +2,7 @@ function out = Triangulation2Intersect(triangulationStructure, m1coord_mesh, N)
 
 vertexMatrix = zeros(height(triangulationStructure.ConnectivityList),3,3);
 
-if license('test','parallel-computing') == 1
+if contains(struct2array(ver), 'Parallel Computing Toolbox') == 1
     parfor i = 1:length(triangulationStructure.ConnectivityList)
         vertexMatrix(i,:,:) = triangulationStructure.Points(triangulationStructure.ConnectivityList(i,:),1:3);
     end
@@ -11,6 +11,7 @@ else
         vertexMatrix(i,:,:) = triangulationStructure.Points(triangulationStructure.ConnectivityList(i,:),1:3);
     end
 end
+
 
 for vertexCount = 1:length(vertexMatrix)
     [intersect, t, u, v, xcoor] = TriangleRayIntersection(m1coord_mesh,N,squeeze(vertexMatrix(vertexCount,:,:)));
