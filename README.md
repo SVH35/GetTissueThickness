@@ -92,9 +92,9 @@ Not suppressing the command (i.e. no semicolon) outputs a 1 x 4 table in the MAT
 
 ![GetTissueThickness Tutorial](/Documents/Figures/Figure_Tutorial.png)
 
-In this example, the CSF thickness was 3.5816 mm, the bone thickness was 6.0238 mm, the skin thickness was 5.7681 mm, and the scalp-to-cortex distance was 15.3730 mm (i.e., the sum of the CSF, bone and skin thickness). 
+In this example, the CSF thickness was 10.8250 mm, the bone thickness was 7.0401 mm, the skin thickness was 6.2609 mm, and the scalp-to-cortex distance was 24.1260 mm (i.e., the sum of the CSF, bone and skin thickness). 
 
-In the figure, the inner grey layer denotes the grey matter points, the blue layer denotes the CSF, the light grey layer denotes the skull and the brown layer denotes the skin. The intersection between the grey matter normal (red line) and the outer voxels of each layer is displayed by red spheres. The best-fit plane of the grey matter is shown the color-gradient plane.
+In the figure, the inner grey layer denotes the grey matter points, the blue layer denotes the CSF, the light grey layer denotes the skull and the brown layer denotes the skin. The intersection between the grey matter normal (red line) and the outer voxels of each layer is displayed by red spheres. The best-fit plane of the grey matter is shown by the yellow plane.
 
 ## License
 This software runs under a GNU General Public License v3.0.
