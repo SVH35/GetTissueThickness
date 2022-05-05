@@ -48,35 +48,53 @@ The 3D grey matter voxel closest to the cortical region of interest is located. 
 Through the [Möller–Trumbore Ray/Triaingle intersection algorithm](https://nl.mathworks.com/matlabcentral/fileexchange/33073-triangle-ray-intersection), the intersection between the normal of the cortex (i.e., the third eigenvector) which runs through the cortical region of interest and the outer grey matter, cerebrospinal fluid, skull and skin layers are retrieved. From these intersection coordinates, the distances of the cerebrospinal fluid, skull and skin layers are calculated, as well as the scalp-to-cortex distance.
 
 
-## Tutorial
-1. Download the [tutorial dataset](https://github.com/SVH35/GetTissueThickness/tree/main/Documents/Tutorial%20Dataset). 
+## Tutorial: Single Subject Pipeline Using the CalcTissueThickness.m Script
+Overview: Steps 1-2 create the head mesh from MRI scans and Steps 3-6 use GTT to measure tissue thicknesses based on the head model created in Steps 1-2.
+
+### Steps 1-2: Creating the Head Mesh from T1w and T2w MRI scans
+
+1. Download the [tutorial dataset](https://github.com/SVH35/GetTissueThickness/tree/main/Documents/Tutorial%20Dataset). The tutorial data include T1w and T2w MRI scans to mesh into a head model. If you would like to start the tutorial with an already completed head model, download the 'm2m_Example_GTT' folder as well. 
 
 2. Create finite element head meshes from the downloaded T1w and T2w MRI scans. We recommend [SimNIBS headreco](https://simnibs.github.io/simnibs/build/html/documentation/command_line/headreco.html) (version 3.2) to do so. Although SimNIBS provides a comprehensive overview of this procedures, a short summary is given here for the sake of completeness.
 
-    2.1. Open a terminal
+    2.1. Open a terminal and navigate to the folder containing the T1w and T2w MRI scans
     
     2.2. Run the following command
   
     `headreco all Example_GTT Example_GTT_T1.nii Example_GTT_T2.nii` 
   
+    *This command calls headreco using both SPM12 and CAT12, creating a headmesh named ‘Example_GTT’ from the T1 and T2 scans. The process takes               approximately 2 hours on a 8-core computer with 32GB of RAM.*
+    
     *if a CPU-heavy computer is available, we recommend running headreco in a parellel for-loop to considerably decrease running time when working with       large datasets*
   
     2.3. Check results
   
     `headreco check Example_GTT`
-
+    
+     *This command opens a window allowing the user to compare the raw MRI scan and the head model containing meshed tissue segmentation layers.*
+     
+### Steps 3-6: Using GTT To Measure Tissue Thicknessess at the Region of Interest
+    
 3. Download the [code](/Code) and add it to your MATLAB path.
 4. Add the m2m folder containing the subject mesh as a variable in matlab. For instance;
 
    `m2m_folder = C:\Users\SVH\GTT\m2m_Example_GTT';`
 
-5. Add the coordinate of interest as a variable in MATLAB. For instance, suppose we aim to investigate M1, the MNI coordinate would be x = -37, y = -21, z = 58 ([Mayka et al. 2007](https://doi.org/10.1016/j.neuroimage.2006.02.004)).
+5. Add the coordinate of interest as a variable in MATLAB. For instance, for M1, the MNI coordinate would be x = -37, y = -21, z = 58 ([Mayka et al. 2007](https://doi.org/10.1016/j.neuroimage.2006.02.004)).
 
     `roi = [-37, -21, 58];`
 
 6. Run the following command in MATLAB. The third argument should be 1 if you want to plot the results. The created figure will show all tissue layers (grey matter, cerebrospinal fluid, bone and skin), the grey matter plane, the grey matter normal and all intersection points. The fourth argument defines the total amount of nearby points you want to use to create the data matrix used in the principal component analysis. 
 
    `CalcTissueThickness(m2m_folder,roi, 1, 5000);`
+
+Not suppressing the command (i.e. no semicolon) outputs a 1 x 4 table in the MATLAB Command Window, showing the CSF thickness, bone thickness, skin thickness, and scalp-to-cortex distance (sum of each tissue layer thickness). If the plot argument equals 1, the figure graphically showing the results is also displayed (for this figure, only the points of the triangulation matrix are shown (i.e., the plot3 MATLAB function is used instead of the trimesh function). 
+
+![GetTissueThickness Tutorial](/Documents/Figures/Figure_Tutorial.png)
+
+In this example, the CSF thickness was 3.5816 mm, the bone thickness was 6.0238 mm, the skin thickness was 5.7681 mm, and the scalp-to-cortex distance was 15.3730 mm (i.e., the sum of the CSF, bone and skin thickness). 
+
+In the figure, the inner grey layer denotes the grey matter points, the blue layer denotes the CSF, the light grey layer denotes the skull and the brown layer denotes the skin. The intersection between the grey matter normal (red line) and the outer voxels of each layer is displayed by red spheres. The best-fit plane of the grey matter is shown the color-gradient plane.
 
 ## License
 This software runs under a GNU General Public License v3.0.
