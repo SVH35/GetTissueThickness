@@ -53,7 +53,7 @@ Overview: Steps 1-2 create the head mesh from MRI scans and Steps 3-6 use GTT to
 
 ### Steps 1-2: Creating the Head Mesh from T1w and T2w MRI scans
 
-1. Download the [tutorial dataset](https://github.com/SVH35/GetTissueThickness/tree/main/Documents/Tutorial%20Dataset). The tutorial data include T1w and T2w MRI scans to mesh into a head model. If you would like to start the tutorial with an already completed head model, download the 'm2m_Example_GTT' folder as well. 
+1. Download the [tutorial dataset](https://github.com/SVH35/GetTissueThickness/tree/main/Documents/Tutorial%20Dataset). The tutorial data include T1w and T2w MRI scans to mesh into a head model.
 
 2. Create finite element head meshes from the downloaded T1w and T2w MRI scans. We recommend [SimNIBS headreco](https://simnibs.github.io/simnibs/build/html/documentation/command_line/headreco.html) (version 3.2) to do so. Although SimNIBS provides a comprehensive overview of this procedures, a short summary is given here for the sake of completeness.
 
