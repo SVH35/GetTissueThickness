@@ -49,11 +49,11 @@ Through the [Möller–Trumbore Ray/Triaingle intersection algorithm](https://nl
 
 
 ## Tutorial: Single Subject Pipeline Using the CalcTissueThickness.m Script
-Overview: Steps 1-2 create the head mesh from MRI scans and Steps 3-6 use GTT to measure tissue thicknesses based on the head model created in Steps 1-2.
+Overview: Steps 1-2 create the head mesh from MRI scans and Steps 3-6 use GTT to measure tissue thicknesses based on the head model created in Steps 1-2. If you want to skip step 1 and 2, you download the head model [here](https://drive.google.com/file/d/1hLk6LK7oE7EHSExLVKxkLyPb8GfBv8KB/view?usp=sharing).
 
 ### Steps 1-2: Creating the Head Mesh from T1w and T2w MRI scans
 
-1. Download the [tutorial dataset](https://github.com/SVH35/GetTissueThickness/tree/main/Documents/Tutorial%20Dataset). The tutorial data include T1w and T2w MRI scans to mesh into a head model.
+1. Download the [tutorial dataset](https://github.com/SVH35/GetTissueThickness/tree/main/Documents/Tutorial%20Dataset). The tutorial data include T1w and T2w MRI scans to mesh into a head model. If you prefer to skip step 2, you can also immediately donwload the meshed head model [here](https://drive.google.com/file/d/1hLk6LK7oE7EHSExLVKxkLyPb8GfBv8KB/view?usp=sharing). 
 
 2. Create finite element head meshes from the downloaded T1w and T2w MRI scans. We recommend [SimNIBS headreco](https://simnibs.github.io/simnibs/build/html/documentation/command_line/headreco.html) (version 3.2) to do so. Although SimNIBS provides a comprehensive overview of this procedures, a short summary is given here for the sake of completeness.
 
