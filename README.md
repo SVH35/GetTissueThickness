@@ -15,7 +15,8 @@ The GTT pipeline consists of four major parts:
 The following persons worked on this project
 * Sybren Van Hoornweder
 * Kevin A. Caulfield
-* Marc Geraerts
+* Marc Geraerts 
+* Stefanie Verstraelen
 * Raf L.J. Meesen
 
 ## How to cite
