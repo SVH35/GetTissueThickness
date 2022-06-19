@@ -91,7 +91,7 @@ Overview: Steps 1-2 create the head mesh from MRI scans and Steps 3-6 use GTT to
 
 Not suppressing the command (i.e. no semicolon) outputs a 1 x 4 table in the MATLAB Command Window, showing the CSF thickness, bone thickness, skin thickness, and scalp-to-cortex distance (sum of each tissue layer thickness). If the plot argument equals 1, the figure graphically showing the results is also displayed (for this figure, only the points of the triangulation matrix are shown (figure colors have been updated in final version of GTT). 
 
-![GetTissueThickness Tutorial](/Documents/Figures/Figure_Tutorial.png)
+![GetTissueThickness Tutorial](/Documents/Figures/Figure_EX_Tutorial.png)
 
 In this example, the CSF thickness was 10.8250 mm, the bone thickness was 7.0401 mm, the skin thickness was 6.2609 mm, and the scalp-to-cortex distance was 24.1260 mm (i.e., the sum of the CSF, bone and skin thickness). 
 
