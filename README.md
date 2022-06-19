@@ -1,6 +1,6 @@
 # GTT: GetTissueThickness
 
-![GetTissueThickness Frontpage](/Documents/Figures/GTT_banner.png)
+![GetTissueThickness Frontpage](/Documents/Figures/GTT_BANNER.png)
 
 ## Introduction
 The main goal of GTT is to provide a systematic, automated and fast method to quantify the thickness of tissues in the scalp. By doing so, GTT aims to provide a tool to better understand how tissues and/or scalp-to-cortex distance influence non-invasive brain stimulation and source-localized neuroimaging. 
