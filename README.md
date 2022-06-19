@@ -49,7 +49,7 @@ The 3D grey matter voxel closest to the cortical region of interest is located. 
 Through the [Möller–Trumbore Ray/Triaingle intersection algorithm](https://nl.mathworks.com/matlabcentral/fileexchange/33073-triangle-ray-intersection), the intersection between the normal of the cortex (i.e., the third eigenvector) which runs through the cortical region of interest and the outer grey matter, cerebrospinal fluid, skull and skin layers are retrieved. From these intersection coordinates, the distances of the cerebrospinal fluid, skull and skin layers are calculated, as well as the scalp-to-cortex distance.
 
 
-## Tutorial: Single Subject Pipeline Using the CalcTissueThickness.m Script
+## Tutorial: Single Subject Pipeline Using the GTT.m Script
 Overview: Steps 1-2 create the head mesh from MRI scans and Steps 3-6 use GTT to measure tissue thicknesses based on the head model created in Steps 1-2. If you want to skip step 1 and 2, you download the head model [here](https://drive.google.com/file/d/1hLk6LK7oE7EHSExLVKxkLyPb8GfBv8KB/view?usp=sharing).
 
 ### Steps 1-2: Creating the Head Mesh from T1w and T2w MRI scans
@@ -87,7 +87,7 @@ Overview: Steps 1-2 create the head mesh from MRI scans and Steps 3-6 use GTT to
 
 6. Run the following command in MATLAB. The third argument should be 1 if you want to plot the results. The created figure will show all tissue layers (grey matter, cerebrospinal fluid, bone and skin), the grey matter plane, the grey matter normal and all intersection points. The fourth argument defines the total amount of nearby points you want to use to create the data matrix used in the principal component analysis. 
 
-   `CalcTissueThickness(m2m_folder,roi, 1, 5000);`
+   `GTT(m2m_folder,roi, 1, 5000);`
 
 Not suppressing the command (i.e. no semicolon) outputs a 1 x 4 table in the MATLAB Command Window, showing the CSF thickness, bone thickness, skin thickness, and scalp-to-cortex distance (sum of each tissue layer thickness). If the plot argument equals 1, the figure graphically showing the results is also displayed (for this figure, only the points of the triangulation matrix are shown (i.e., the plot3 MATLAB function is used instead of the trimesh function). 
 
