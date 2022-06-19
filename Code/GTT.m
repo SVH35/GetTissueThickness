@@ -109,10 +109,6 @@ Output = table(CSF_Thickness,Bone_Thickness,Skin_Thickness,ScalpToCortex); %crea
 if ToPlot == 1 %plot results
     quiver3(m1coord_mesh(1),m1coord_mesh(2),m1coord_mesh(3),(N(1)*60),(N(2)*60),(N(3)*60),'Color','r') %plot normal (eigenvector 3)
     hold on
-    %quiver3(m1coord_mesh(1),m1coord_mesh(2),m1coord_mesh(3),(GN1(1)*15),(GN1(2)*15),(GN1(3)*15),'Color','y') %plot eigenvector 1
-    %hold on
-    %quiver3(m1coord_mesh(1),m1coord_mesh(2),m1coord_mesh(3),(GN2(1)*15),(GN2(2)*15),(GN2(3)*15),'Color','b')%plot eigenvector 2
-    %hold on
     plot3(intersectpoint_GM(1),intersectpoint_GM(2),intersectpoint_GM(3),'o','Color','#ff0000','MarkerSize',10,'MarkerFaceColor','#ff0000')
     hold on
     plot3(CSF_thickness{1,2}(1,1),CSF_thickness{1,2}(1,2),CSF_thickness{1,2}(1,3),'o','Color','#ff0000','MarkerSize',10,'MarkerFaceColor','#ff0000')
@@ -121,57 +117,15 @@ if ToPlot == 1 %plot results
     hold on
     plot3(skin_thickness{1,2}(1,1),skin_thickness{1,2}(1,2),skin_thickness{1,2}(1,3),'o','Color','#000000','MarkerSize',15,'MarkerFaceColor','#000000')
     hold on
-    %plot3(ROI_coord(1),ROI_coord(2),ROI_coord(3),'o','Color','#000000','MarkerSize',15,'MarkerFaceColor','#000000')
-    %hold on
     plot3(skin.Points(:,1),skin.Points(:,2),skin.Points(:,3),'o','Color','#D7B6A5','MarkerSize',1)
-    %trimesh(skin,'facecolor', '#a88d6f', 'edgecolor', '#D7B6A5')
     hold on
     plot3(csf.Points(:,1),csf.Points(:,2),csf.Points(:,3),'o','Color','#008488','MarkerSize',1)
-    %trimesh(csf,'facecolor', '#92c3f7', 'edgecolor', '#008488')
     hold on
     plot3(bone.Points(:,1),bone.Points(:,2),bone.Points(:,3),'o','Color','#CBCBCB','MarkerSize',1)
-    %trimesh(bone,'facecolor', '#b3b3b3', 'edgecolor', '#CBCBCB')
     hold on
     plot3(gm.Points(:,1),gm.Points(:,2),gm.Points(:,3),'o','Color','#464646','MarkerSize',1)
-    %trimesh(gm,'facecolor', '#949494', 'edgecolor', '#464646')
     hold on
     plot3(wm.Points(:,1),wm.Points(:,2),wm.Points(:,3),'o','Color','#F9F6EE','MarkerSize',1)
-    %trimesh(wm,'facecolor', '#949494', 'edgecolor', '#F9F6EE')
-%     hold on
-%     w = null(N.'); 
-%     [P,Q] = meshgrid(-15:15); 
-%     coords = [m1coord_mesh(1)+w(1,1)*P+w(1,2)*Q, m1coord_mesh(2)+w(2,1)*P+w(2,2)*Q, m1coord_mesh(3)+w(3,1)*P+w(3,2)*Q];
-%     surf(coords(1:31,1:31),coords(1:31,32:62),coords(1:31,63:93))
 end
-
-% if ToPlot == 1 %plot results
-%     quiver3(m1coord_mesh(1),m1coord_mesh(2),m1coord_mesh(3),(N(1)*60),(N(2)*60),(N(3)*60),'Color','r') %plot normal (eigenvector 3)
-%     hold on
-%     quiver3(m1coord_mesh(1),m1coord_mesh(2),m1coord_mesh(3),(GN1(1)*15),(GN1(2)*15),(GN1(3)*15),'Color','y') %plot eigenvector 1
-%     hold on
-%     quiver3(m1coord_mesh(1),m1coord_mesh(2),m1coord_mesh(3),(GN2(1)*15),(GN2(2)*15),(GN2(3)*15),'Color','b')%plot eigenvector 2
-%     hold on
-%     hold on
-%     plot3(intersectpoint_GM(1),intersectpoint_GM(2),intersectpoint_GM(3),'o','Color','#ff0000','MarkerSize',10,'MarkerFaceColor','#ff0000')
-%     hold on
-%     plot3(CSF_thickness{1,2}(1,1),CSF_thickness{1,2}(1,2),CSF_thickness{1,2}(1,3),'o','Color','#ff0000','MarkerSize',10,'MarkerFaceColor','#ff0000')
-%     hold on
-%     plot3(bone_thickness{1,2}(1,1),bone_thickness{1,2}(1,2),bone_thickness{1,2}(1,3),'o','Color','#ff0000','MarkerSize',10,'MarkerFaceColor','#ff0000')
-%     hold on
-%     plot3(skin_thickness{1,2}(1,1),skin_thickness{1,2}(1,2),skin_thickness{1,2}(1,3),'o','Color','#ff0000','MarkerSize',10,'MarkerFaceColor','#ff0000')
-%     hold on
-%     trimesh(skin,'facecolor', '#a88d6f', 'edgecolor', '#553000')
-%     hold on
-%     trimesh(csf,'facecolor', '#92c3f7', 'edgecolor', '#008488')
-%     hold on
-%     trimesh(bone,'facecolor', '#b3b3b3', 'edgecolor', '#CBCBCB')
-%     hold on
-%     trimesh(gm,'facecolor', '#949494', 'edgecolor', '#464646')
-%     hold on
-%     w = null(N.'); 
-%     [P,Q] = meshgrid(-15:15); 
-%     coords = [m1coord_mesh(1)+w(1,1)*P+w(1,2)*Q, m1coord_mesh(2)+w(2,1)*P+w(2,2)*Q, m1coord_mesh(3)+w(3,1)*P+w(3,2)*Q];
-%     surf(coords(1:31,1:31),coords(1:31,32:62),coords(1:31,63:93))
-% end
 toc
 end
