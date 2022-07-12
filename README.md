@@ -23,15 +23,14 @@ The following persons worked on this project
 Pleaser cite the following article if you use the following script: TBP
 
 ## Requirements
-The pipeline only requires [MATLAB](https://www.mathworks.com/products/matlab.html) to run. 
+The pipeline requires [MATLAB](https://www.mathworks.com/products/matlab.html) and [SimNIBS](https://simnibs.github.io/simnibs/build/html/index.html) to run. 
 
 ## Third party files
 We have used code from the following projects in this repository:
-* [SimNIBS](https://simnibs.github.io/simnibs/build/html/index.html)
 * [Triangle/Ray Intersection](https://nl.mathworks.com/matlabcentral/fileexchange/33073-triangle-ray-intersection)
 
 ## Overview of the pipeline
-To run the pipeline, download the [code](/Code). This section provides a short overview of the pipeline, a more in-depth discussion of the underlying methods can be found in the accompanying publication. 
+To run the pipeline, download the [code](/Code). This section provides a short overview of the pipeline, a more in-depth discussion of the underlying methods can be found in the accompanying publication. Make sure that SimNIBS and its subfolders are added to the MATLAB environment.
 
 ### 0. Generate high-quality head models from MR images
 Given that finite element head meshes are required, an algoritm capable of creating these head meshes based on T1w and T2w magnetic resonance image scans is required before being able to use GTT. We recommend [SimNIBS headreco](https://simnibs.github.io/simnibs/build/html/documentation/command_line/headreco.html).
@@ -76,7 +75,7 @@ Overview: Steps 1-2 create the head mesh from MRI scans and Steps 3-6 use GTT to
      
 ### Steps 3-6: Using GTT To Measure Tissue Thicknessess at the Region of Interest
     
-3. Download the [code](/Code) and add it to your MATLAB path.
+3. Download the [code](/Code) and add it to your MATLAB path. Make sure that SimNIBS is added to your environment.
 4. Add the m2m folder containing the subject mesh as a variable in matlab. For instance;
 
    `m2m_folder = C:\Users\SVH\GTT\m2m_Example_GTT';`
