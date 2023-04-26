@@ -4,7 +4,7 @@
 ## Introduction
 The primary objective of GTT is to provide a systematic, automated and fast method to quantify the thickness of tissues in the head. In doing so, GTT aims to provide a tool to understand and control for the influence of tissues on non-invasive brain stimulation and neuroimaging. 
 
-The GTT pipeline is discussed in the following this study: TBA
+The GTT pipeline is discussed in the following this study: [https://doi.org/10.1101/2023.04.18.537177](https://doi.org/10.1101/2023.04.18.537177)
 
 ![GetTissueThickness Frontpage](/GTT_banner1.png)
 
