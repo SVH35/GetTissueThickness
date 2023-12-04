@@ -5,12 +5,24 @@ function  [Output] = GTT(input)
 %GTT requires a structure as input, containing the following fields
 
 %input.Mesh=            path containing mesh
-%input.Fiducial=           coordinate
-%input.FiducialType=       coordinate space, can be MNI or Subject
-%input.BeginTissue=      can be either SCALP or GM, defines if SCD or CSD
-%                       has to be measured
-%input.PlotResults=     should be 1 if a visual output has to be produced
 
+%input.Fiducial=        coordinate
+
+%input.FiducialType=    coordinate space, can be MNI or Subject
+
+%input.BeginTissue=     can be either SCALP or GM, defines if SCD or CSD
+                        %has to be measured
+
+%input.PlotResults=     should be 1 if a visual output has to be produced|
+
+%input.Direction=       should not exist if a standard SCD/CSD measurement
+                        %should be performed. If it exists, it calculates
+                        %the SCD/CSD based on the given direction. The
+                        %orientation should be an 1x3 array, indicating the
+                        %direction to use (e.g., the z-axis of the TMS coil
+                        %per SimNIBS convention)
+                        %if input.Direction is set, BeginTissue should be
+                        %scalp
 %% Code
 tic
 
@@ -39,7 +51,6 @@ elseif input.BeginTissue == "GM"
     softtissue_surf_coord = findClosest3DCoord(softtissue.Points,ROI_coord);
 end
 SphereSize = ceil(norm(gm_surf_coord - softtissue_surf_coord))*2;
-N = [(softtissue_surf_coord(1)-gm_surf_coord(1)),(softtissue_surf_coord(2)-gm_surf_coord(2)),(softtissue_surf_coord(3)-gm_surf_coord(3))];
 
 disp('Calculating tissue thicknesses');
 gm_subsection = getSubsection(gm, gm_surf_coord, SphereSize);
@@ -51,6 +62,27 @@ CompactBone_subsection = getSubsection(bone_compact, gm_surf_coord, SphereSize);
 SpongyBone_subsection = getSubsection(bone_spongy, gm_surf_coord, SphereSize);
 blood_subsection = getSubsection(blood, gm_surf_coord, SphereSize);
 %muscle_subsection = getSubsection(muscle, gm_surf_coord, SphereSize);
+
+% get vector
+if isfield(input,'Direction')
+    if strcmp(input.BeginTissue,'GM')
+        error('If a direction is given, the begin tissue should be scalp');
+    end
+    
+    N = input.Direction;
+    customOrientation = 1;
+    
+    gm_temporary = tissue_thickness(Triangulation2Intersect(gm_subsection, softtissue_surf_coord, N*-1));
+    gm_surf_coord = gm_temporary{1, 1};
+    if isempty(gm_surf_coord) 
+        print('Given direction found no intersection with grey matter, inverting direction and retrying')
+        gm_temporary = tissue_thickness(Triangulation2Intersect(gm_subsection, softtissue_surf_coord, N));
+        gm_surf_coord = gm_temporary{1,1};
+    end
+else
+    N = [(softtissue_surf_coord(1)-gm_surf_coord(1)),(softtissue_surf_coord(2)-gm_surf_coord(2)),(softtissue_surf_coord(3)-gm_surf_coord(3))];
+    customOrientation = 0;
+end
 
 %% measure tissue thicknesses
 gm_temporary = tissue_thickness(Triangulation2Intersect(gm_subsection, gm_surf_coord, N));
@@ -184,7 +216,12 @@ Output = table(CORTICAL_Thickness,thickness_CSF,thickness_blood,thickness_Compac
 
 %% plot MRI results
 if input.PlotResults == 1 %plot results
-    quiver3(gm_surf_coord(1),gm_surf_coord(2),gm_surf_coord(3),(N(1)*2.5),(N(2)*2.5),(N(3)*2.5),'Color','k'); hold on
+    if customOrientation == 1
+        factor = 25;
+    else
+        factor = 2.5;
+    end
+    quiver3(gm_surf_coord(1),gm_surf_coord(2),gm_surf_coord(3),(N(1)*factor),(N(2)*factor),(N(3)*factor),'Color','k'); hold on
     plot3(wm_coord(1),wm_coord(2),wm_coord(3),'o','Color','#ff0000','MarkerSize',15,'MarkerFaceColor','#FFFFFF'); hold on
     plot3(gm_coord(1),gm_coord(2),gm_coord(3),'o','Color','#ff0000','MarkerSize',15,'MarkerFaceColor','#FFFFFF'); hold on
     plot3(gm_surf_coord(1),gm_surf_coord(2),gm_surf_coord(3),'o','Color','#7B6979','MarkerSize',15,'MarkerFaceColor','#7B6979'); hold on
