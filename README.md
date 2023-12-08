@@ -38,6 +38,8 @@ GTT consists of three steps: preparation, initation, and measurement. It require
 * structure.FiducialType (Coordinate space, can be MNI or Subject space	Subject)
 * structure.BeginTissue	(Whether structure.Coord is a scalp [SCALP] or grey matter [GM] coordinate)
 * structure.PlotResults (Boolean statement if results should [1] or should not be plotted [1])
+* structure.Direction (1x3 array that defines the vector to use for the SCD measurements (e.g., the TMS coil direction). When this field is absent (default), standard SCD measurements are performed)
+
  
 Examples of the GTT graphical output are shown below:
 ![GetTissueThickness Frontpage](/GTT_OUTPUT.png)
